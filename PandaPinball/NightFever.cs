@@ -1,7 +1,7 @@
 using System;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
-using GHI.Premium.Hardware;
+using GHIElectronics.NETMF.FEZ;
 
 namespace PandaPinball
 {
@@ -35,8 +35,8 @@ namespace PandaPinball
             }
            
             /* Lamp Definitions */
-            Lamps[0] = new Lamp("Player 1 Lamp", 1);
-            Lamps[1] = new Lamp("Player 2 Lamp", 2);
+            Lamps[0] = new Lamp("Player 1 Lamp", FEZ_Pin.Digital.LED);
+            Lamps[1] = new Lamp("Player 2 Lamp", FEZ_Pin.Digital.Di50);
 
             /* Relay Definitions */
             Relays[0] = new Relay("Knocker",0);
@@ -46,12 +46,12 @@ namespace PandaPinball
             Relays[4] = new Relay("Right Bank Reset", 4);
 
             /* Switch Definitions */
-            Switches[0] = new Switch("Ball Detect", Cpu.Pin.GPIO_Pin3, "","", Port.InterruptMode.InterruptEdgeBoth);
-            Switches[1] = new Switch("Outer Left Drain", Cpu.Pin.GPIO_Pin5, "", "", Port.InterruptMode.InterruptEdgeLow);
-            Switches[2] = new Switch("Left Coin Insert", Cpu.Pin.GPIO_Pin4, "ADDCREDIT 1:PLAYSOUND CreditSound.wav", "", Port.InterruptMode.InterruptEdgeLow);
-            Switches[3] = new Switch("Right Coin Insert", Cpu.Pin.GPIO_Pin6, "ADDCREDIT 2:PLAYSOUND CreditSound.wav", "", Port.InterruptMode.InterruptEdgeLow);
-            Switches[4] = new Switch("Credit Button", Cpu.Pin.GPIO_Pin7, "ADDCREDIT 1:PLAYSOUND CreditSound.wav", "", Port.InterruptMode.InterruptEdgeLow);
-            Switches[5] = new Switch("Start Button", Cpu.Pin.GPIO_Pin10, "", "", Port.InterruptMode.InterruptEdgeLow);
+            Switches[0] = new Switch("Ball Detect", FEZ_Pin.Interrupt.LDR, "","", Port.InterruptMode.InterruptEdgeBoth);
+            Switches[1] = new Switch("Outer Left Drain", FEZ_Pin.Interrupt.Di43, "", "", Port.InterruptMode.InterruptEdgeLow);
+            Switches[2] = new Switch("Left Coin Insert", FEZ_Pin.Interrupt.Di7, "ADDCREDIT 1:PLAYSOUND CreditSound.wav", "", Port.InterruptMode.InterruptEdgeLow);
+            Switches[3] = new Switch("Right Coin Insert", FEZ_Pin.Interrupt.Di38, "ADDCREDIT 2:PLAYSOUND CreditSound.wav", "", Port.InterruptMode.InterruptEdgeLow);
+            Switches[4] = new Switch("Credit Button", FEZ_Pin.Interrupt.Di35, "ADDCREDIT 1:PLAYSOUND CreditSound.wav", "", Port.InterruptMode.InterruptEdgeLow);
+            Switches[5] = new Switch("Start Button", FEZ_Pin.Interrupt.Di30, "", "", Port.InterruptMode.InterruptEdgeLow);
         }
 
         public int GetMaxBalls()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 using System.Text;
 using Microsoft.SPOT;
@@ -9,7 +10,7 @@ namespace PandaPinball
     {
         const string vbCrLf = "\r\n";
 
-
+        
 
         public RuleProcessor()
         {
@@ -148,50 +149,6 @@ namespace PandaPinball
         {
            //execute script code here
            
-        }
-
-
-            private void remove(string[] t, long ID)
-            {
-                //string s[];
-                //long i;
-        //ReDim s(0)
-        //For i = 0 To id - 1
-            //s(UBound(s)) = t(i)
-            //ReDim Preserve s(UBound(s) + 1)
-        //Next
-        //For i = id + 1 To UBound(t)
-            //s(UBound(s)) = t(i)
-            //ReDim Preserve s(UBound(s) + 1)
-        //Next
-        //ReDim Preserve s(UBound(s) - 1)
-        //return s;
-            }
-
-        private string Cleanup(string InputStr)
-        {
-            StringBuilder CleanStr = new StringBuilder(InputStr.Trim());
-
-            CleanStr.Replace(vbCrLf, ":");
-            CleanStr.Replace("=", " = ");
-            CleanStr.Replace(":", " : ");
-            CleanStr.Replace("*", " * ");
-            CleanStr.Replace("/", " / ");
-            CleanStr.Replace("+", " + ");
-            CleanStr.Replace("-", " - ");
-            CleanStr.Replace("<", " < ");
-            CleanStr.Replace(">", " > ");
-            CleanStr.Replace("> =", ">=");
-            CleanStr.Replace("< =", "<=");
-            CleanStr.Replace("< >", "<>");
-
-            int i = -1;
-            while (i != CleanStr.Length) 
-            {
-                i = CleanStr.Length;
-                CleanStr.Replace("  ", " ");
-            }
-            return CleanStr.ToString();
-        }
+        }   
     }
 }

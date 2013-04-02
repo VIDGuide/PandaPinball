@@ -3,7 +3,7 @@ using System.Collections;
 using Microsoft.SPOT;
 using System.Threading;
 using Microsoft.SPOT.Hardware;
-using GHI.Premium.Hardware;
+using GHIElectronics.NETMF.FEZ;
 
 namespace PandaPinball
 {
@@ -21,6 +21,8 @@ namespace PandaPinball
         public const int Game_InProgress = 2;
         public const int Game_Ending = 3;
 
+        
+
         public static RuleProcessor ScriptEngine = new RuleProcessor();
 
         public static NightFever Game = new NightFever(); // Change this line to new 'game' class for different playfields/games
@@ -29,6 +31,7 @@ namespace PandaPinball
         {
             Debug.Print("Welcome to " + Pinball.Game.GetGameName() + ". Starting up...");
             Debug.Print("Game Started. Ready to Run");
+            //Debug.Print("Memory: " + Microsoft.SPOT.Debug.GC(false).ToString());
             Thread.Sleep(Timeout.Infinite);
         }
 

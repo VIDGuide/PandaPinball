@@ -3,4 +3,8 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DeployTransport>USB</DeployTransport>
+    <DeployDevice>USBizi</DeployDevice>
+  </PropertyGroup>
 </Project>

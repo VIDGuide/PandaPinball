@@ -1,7 +1,8 @@
 using System;
 using System.Threading;
 using Microsoft.SPOT;
-
+using Microsoft.SPOT.Hardware;
+using GHIElectronics.NETMF.FEZ;
 
 
 namespace PandaPinball
@@ -9,29 +10,32 @@ namespace PandaPinball
     public class Lamp
     {
         string Name = "";
-        int IOPort = 0;
+        FEZ_Pin.Digital IOPort;
         Boolean CurrentState = false;
+
+        OutputPort LED;
 
         Timer FlashTimer;
         int FlashesRemaining = 0;
         int FlashIntervalInMS = 0;
 
-        public Lamp(string name, int IOport)
+        public Lamp(string name, FEZ_Pin.Digital IOport)
         {
             Name = name;
             IOPort = IOport;
+            LED = new OutputPort((Cpu.Pin)IOPort, false);
         }
 
         public void TurnOn()
         {
             this.CurrentState = true;
-            //call IO port to turn lamp on
+            LED.Write(CurrentState);
         }
 
         public void TurnOff()
         {
             this.CurrentState = false;
-            //cal IO Port to turn lamp off
+            LED.Write(CurrentState);
         }
 
         private void FlashAction(object o)
@@ -40,6 +44,7 @@ namespace PandaPinball
             {
                 FlashesRemaining -= 1;
                 if (CurrentState) { TurnOff(); } else { TurnOn();}
+                //Debug.Print("Flashing " + Name + ". " + FlashesRemaining.ToString() + " toggles remaining.");
                 FlashTimer = new Timer(new TimerCallback(FlashAction), 0, FlashIntervalInMS, 0); //relaunch timer event if we have more flashes to do
             }
         }
